@@ -1,11 +1,11 @@
-#include "croad.h"
 
+#include "croad.h"
 
  typedef struct{
    int index; //distance index e.g i
    int dist;  //distance(house_i-1 , house_i)
-   int hLeft; //house_i-1
-   int hRight;//house_i
+   int hLeft; //Bool 1 or 0
+   int hRight;//Bool 1 or 0
  }DAT;
 
   DAT *LISTLE;
@@ -60,7 +60,6 @@
         LISTLE[le].dist = dist;
         LISTLE[le].hLeft = hLeft;
         LISTLE[le++].hRight = hRight;
-// printf("ok:l2");
       }
       else
         if(dist > DIAMETER)
@@ -69,7 +68,6 @@
            LISTGT[gt].dist = dist;
            LISTGT[gt].hLeft = hLeft;
            LISTGT[gt++].hRight = hRight;
-    // printf("ok:lg");
         }
  }
 
@@ -94,15 +92,13 @@
  }
  void makeClusters(){
    int s, l,z;
-       for(k=0; k< le-1; k++){
-  //printf("index: %d\n", LISTLE[k].index);
-       if(d == 0){
+   for(k=0; k< le-1; k++){
+      if(d == 0){
          if(LISTLE[k].index == 1)
             MATRIX[bscount][t++] = le+gt;
           else
            MATRIX[bscount][t++] = LISTLE[k].index -1;
-        // MATRIX[bscount][t++] = LISTLE[k].index;
-        }
+       }
          if(LISTLE[k+1].index)
             if((LISTLE[k].index+1 == LISTLE[k+1].index) && (d += LISTLE[k].dist+ LISTLE[k+1].dist )){
                if(d <= DIAMETER){
@@ -112,8 +108,7 @@
              }
            else{
               MATRIX[bscount][t++] = LISTLE[k].index;
-                  // MATRIX[bscount][t++] = d;
-                  }
+               }
          
        bscount++;
        d =0;
