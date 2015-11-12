@@ -1,6 +1,6 @@
 #include"croad.h"
 
- int main(int argc, char *argv[]){
+ void datagen(){
  int i;
  int gen;
  FILE *fd;
@@ -11,9 +11,9 @@
  }
  for (i=1; i<= NUMHOUSES; i++){
 
-    gen =rand()%MAXDIST;
+    gen =rand()%MAXTESTDIST;
     fprintf(fd, "%d\t%d\t%d\t%d\n", i, gen, ISHOUSE, ISHOUSE);
    }
-  return 0;
+ 
    
  }
