@@ -1,5 +1,6 @@
 
 #include "croad.h"
+#include "datagen.c"
 
  typedef struct{
    int index; //distance index e.g i
@@ -36,7 +37,8 @@
       fprintf(stderr, "Can't open %s \n", argv[1]);
       exit(0);
    }
-
+   //Generate test data
+   datagen();
    //Partition data into two lists;  listGT and  ListLE
    partitionData();
   //Trim LISTGT data 
@@ -69,6 +71,7 @@
            LISTGT[gt].hLeft = hLeft;
            LISTGT[gt++].hRight = hRight;
         }
+  printlist(LISTLE, "ListLE");
  }
 
  void trimList(){
